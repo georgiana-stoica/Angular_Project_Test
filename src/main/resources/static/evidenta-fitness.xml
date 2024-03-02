@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<activitati>
+    <activitate id="a1">
+      <nume>Yoga</nume>
+      <instructor>Ana Popescu</instructor>
+      <durata>60</durata>
+      <nivel>Începător</nivel>
+    </activitate>
+    <activitate id="a2">
+      <nume>Pilates</nume>
+      <instructor>Mihai Ionescu</instructor>
+      <durata>60</durata>
+      <nivel>Mediu</nivel>
+    </activitate>
+  </activitati>
+
+
