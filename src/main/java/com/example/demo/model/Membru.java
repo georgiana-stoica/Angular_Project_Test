@@ -17,8 +17,15 @@ public class Membru {
     @XmlElement
     private String nume;
 
-//    @XmlElementWrapper(name = "rezervari")
-//    @XmlElement(name = "rezervare")
-//    private List<Rezervare> rezervari;
+    @XmlElement
+    private Contact contact;
+
+    @XmlElement
+    private Abonament abonament;
+
+    @XmlElementWrapper(name = "rezervari")
+    @XmlElement(name = "rezervare")
+    private List<Rezervare> rezervari;
+
 
 }

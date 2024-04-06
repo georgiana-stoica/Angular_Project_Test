@@ -8,12 +8,13 @@ import javax.xml.bind.annotation.*;
 @NoArgsConstructor
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Rezervare {
+public class Contact {
 
-    @XmlAttribute(name = "clasa_id")
-    private String clasaId;
+    @XmlElement
+    private String telefon;
 
-    @XmlAttribute
-    private String data;
+    @XmlElement
+    private String email;
 
+    // Getters și Setters
 }
