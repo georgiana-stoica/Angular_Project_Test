@@ -1,17 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<activitati>
-    <activitate id="a1">
-      <nume>Yoga</nume>
-      <instructor>Ana Popescu</instructor>
-      <durata>60</durata>
-      <nivel>Începător</nivel>
-    </activitate>
-    <activitate id="a2">
-      <nume>Pilates</nume>
-      <instructor>Mihai Ionescu</instructor>
-      <durata>60</durata>
-      <nivel>Mediu</nivel>
-    </activitate>
-  </activitati>
-
-
+<sala_de_fitness>
+    <membri>
+        <membru id="M001">
+            <nume>Popescu Ion</nume>
+            <contact>
+                <telefon>0720000000</telefon>
+                <email>ion.popescu@email.com</email>
+            </contact>
+            <abonament tip="lunar" data_inceput="2024-01-01" data_sfarsit="2024-01-31"/>
+            <rezervari>
+                <rezervare clasa_id="C001" data="2024-01-15"/>
+            </rezervari>
+        </membru>
+        <membru id="M002">
+            <nume>Ionescu Alina</nume>
+            <contact>
+                <telefon>0721111111</telefon>
+                <email>alina.ionescu@email.com</email>
+            </contact>
+            <abonament tip="anual" data_inceput="2024-01-01" data_sfarsit="2024-12-31"/>
+            <rezervari>
+                <rezervare clasa_id="C002" data="2024-01-16"/>
+                <rezervare clasa_id="C003" data="2024-01-20"/>
+            </rezervari>
+        </membru>
+    </membri>
+    <clase>
+        <clasa id="C001">
+            <titlu>Yoga pentru Incepatori</titlu>
+            <instructor>Georgescu Stefan</instructor>
+            <programare data="2024-01-15" ora="10:00"/>
+            <locatie>Sala A</locatie>
+            <capacitate_maxima>20</capacitate_maxima>
+        </clasa>
+        <clasa id="C002">
+            <titlu>Pilates Avansat</titlu>
+            <instructor>Dinu Daniel</instructor>
+            <programare data="2024-01-16" ora="18:00"/>
+            <locatie>Sala B</locatie>
+            <capacitate_maxima>15</capacitate_maxima>
+        </clasa>
+        <clasa id="C003">
+            <titlu>Cardio Intensiv</titlu>
+            <instructor>Manea Ioana</instructor>
+            <programare data="2024-01-20" ora="16:00"/>
+            <locatie>Sala C</locatie>
+            <capacitate_maxima>25</capacitate_maxima>
+        </clasa>
+    </clase>
+    <echipamente>
+        <echipament id="E001" tip="cardio">
+            <denumire>Banda de alergat</denumire>
+            <stare>disponibil</stare>
+        </echipament>
+        <echipament id="E002" tip="forta">
+            <denumire>Set haltere</denumire>
+            <stare>in uz</stare>
+        </echipament>
+        <echipament id="E003" tip="flexibilitate">
+            <denumire>Mingi de pilates</denumire>
+            <stare>disponibil</stare>
+        </echipament>
+    </echipamente>
+</sala_de_fitness>
