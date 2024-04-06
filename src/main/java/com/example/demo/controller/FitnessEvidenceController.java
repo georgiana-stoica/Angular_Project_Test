@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.SalaDeFitness;
+import com.example.demo.model.SalaDeFitnessWrappper;
 import com.example.demo.service.FitnessEvidenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,26 +15,28 @@ import java.io.IOException;
 @RequestMapping("/api/fitness")
 public class FitnessEvidenceController {
 
-  @Autowired
-  private FitnessEvidenceService fitnessService;
+    @Autowired
+    private FitnessEvidenceService fitnessService;
 
-//  @GetMapping(value = "/membri")
-//  public ResponseEntity<String> proceseazaActivitati() {
-//    fitnessService.parseXml();
-//    return new ResponseEntity<>("Activități procesate cu succes!", HttpStatus.OK);
-//  }
-
-  @GetMapping("/membri")
-  public SalaDeFitness getAllMembri() {
-    try {
-      // Assuming you have a method to read the XML content from a file or other source
-      String xmlContent = fitnessService.readXmlContent();
-      return fitnessService.parseXml(xmlContent);
-    } catch (JAXBException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-        throw new RuntimeException(e);
+    @GetMapping("/membri")
+    public SalaDeFitness getAllMembri() {
+        try {
+            String xmlContent = fitnessService.readXmlContent();
+            return fitnessService.parseXml(xmlContent);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
-      return null;
-  }
+
+    @GetMapping("/evidenta")
+    public SalaDeFitnessWrappper getEvidenta() {
+        try {
+            return fitnessService.parseJson();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

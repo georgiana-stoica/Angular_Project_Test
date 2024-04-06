@@ -13,7 +13,7 @@ public class Rezervare {
     @XmlAttribute(name = "clasa_id")
     private String clasa_id;
 
-    @XmlAttribute
+    @XmlAttribute(name = "data")
     private String data;
 
 }

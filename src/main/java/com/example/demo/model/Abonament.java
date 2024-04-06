@@ -14,10 +14,9 @@ public class Abonament {
     private String tip;
 
     @XmlAttribute(name = "data_inceput")
-    private String dataInceput;
+    private String data_inceput;
 
     @XmlAttribute(name = "data_sfarsit")
-    private String dataSfarsit;
+    private String data_sfarsit;
 
-    // Getters și Setters
 }
