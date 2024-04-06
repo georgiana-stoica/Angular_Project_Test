@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.*;
 public class Rezervare {
 
     @XmlAttribute(name = "clasa_id")
-    private String clasaId;
+    private String clasa_id;
 
     @XmlAttribute
     private String data;

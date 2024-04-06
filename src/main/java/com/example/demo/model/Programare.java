@@ -4,23 +4,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Echipament {
+public class Programare {
 
     @XmlAttribute
-    private String id;
+    private String data;
 
     @XmlAttribute
-    private String tip;
-
-    @XmlElement
-    private String denumire;
-
-    @XmlElement
-    private String stare;
-
+    private String ora;
 }

@@ -16,4 +16,12 @@ public class SalaDeFitness {
     @XmlElement(name = "membru")
     private List<Membru> membri;
 
+    @XmlElementWrapper(name = "clase")
+    @XmlElement(name = "clasa")
+    private List<Clasa> clase;
+
+    @XmlElementWrapper(name = "echipamente")
+    @XmlElement(name = "echipament")
+    private List<Echipament> echipamente;
+
 }
