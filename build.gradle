@@ -26,6 +26,7 @@ dependencies {
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
     implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.1.2.RELEASE'
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.3'
+    implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.1.2.RELEASE'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     implementation group: 'org.json', name: 'json', version: '20240303'
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
