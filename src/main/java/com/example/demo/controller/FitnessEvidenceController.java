@@ -47,7 +47,7 @@ public String loadUploadFormAndDisplayData(Model model, HttpServletRequest reque
                 }
             }
             model.addAttribute("claseDetails", claseDetails);
-            model.addAttribute("isWrapper", false);
+            model.addAttribute("isNotWrapper", true);
         } else if (parsedData instanceof SalaDeFitnessWrappper) {
             SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) parsedData;
             Map<String, Clasa> claseDetails = new HashMap<>();

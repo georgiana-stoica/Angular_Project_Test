@@ -12,8 +12,34 @@
 </form>
 
 <h2>Members and Their Classes</h2>
+
+
+<div th:if="${isNotWrapper}">
+    <table th:if="${isNotWrapper}">
+        <thead>
+        <tr>
+            <th>Member Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Class Title</th>
+            <th>Instructor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="membru : ${parsedData.membri}">
+            <td th:text="${membru.nume}"></td>
+            <td th:text="${membru.contact.email}"></td>
+            <td th:text="${membru.contact.telefon}"></td>
+            <th:block th:each="rezervare : ${membru.rezervari}">
+                <td th:text="${claseDetails[rezervare.clasa_id].titlu}"></td>
+                <td th:text="${claseDetails[rezervare.clasa_id].instructor}"></td>
+            </th:block>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <div th:if="${isWrapper}">
-    <table>
+    <table th:if="${isWrapper}">
         <thead>
         <tr>
             <th>Member Name</th>
@@ -37,30 +63,6 @@
     </table>
 </div>
 
-<div th:if="${!isWrapper}">
-    <table>
-        <thead>
-        <tr>
-            <th>Member Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Class Title</th>
-            <th>Instructor</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="membru : ${parsedData.membri}">
-            <td th:text="${membru.nume}"></td>
-            <td th:text="${membru.contact.email}"></td>
-            <td th:text="${membru.contact.telefon}"></td>
-            <th:block th:each="rezervare : ${membru.rezervari}">
-                <td th:text="${claseDetails[rezervare.clasa_id].titlu}"></td>
-                <td th:text="${claseDetails[rezervare.clasa_id].instructor}"></td>
-            </th:block>
-        </tr>
-        </tbody>
-    </table>
-</div>
 <div th:unless="${parsedData}">
     <p>No data available. Please upload a file first.</p>
 </div>
