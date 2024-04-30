@@ -1,9 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Clasa;
-import com.example.demo.model.Membru;
-import com.example.demo.model.SalaDeFitness;
-import com.example.demo.model.SalaDeFitnessWrappper;
+import com.example.demo.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.io.ClassPathResource;
@@ -62,12 +59,21 @@ public class FitnessEvidenceService {
         return salaDeFitnessWrapper;
     }
 
-    public List<Membru> findMembruByName(String name, HttpServletRequest request) {
-        Object dataFromSession = request.getSession().getAttribute("parsedData");
+    public List<Membru> findMembruByName(String name, Object dataFromSession) {
         if (dataFromSession instanceof SalaDeFitnessWrappper) {
             SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) dataFromSession;
             return wrapper.getSalaDeFitness().getMembri().stream()
                     .filter(membru -> membru.getNume().contains(name))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    public List<Echipament> findEchipamentByType(String tip, Object dataFromSession) {
+        if (dataFromSession instanceof SalaDeFitnessWrappper) {
+            SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) dataFromSession;
+            return wrapper.getSalaDeFitness().getEchipamente().stream()
+                    .filter(echipament -> echipament.getTip().contains(tip))
                     .collect(Collectors.toList());
         }
         return Collections.emptyList();

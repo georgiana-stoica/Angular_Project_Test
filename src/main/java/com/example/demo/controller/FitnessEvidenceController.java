@@ -27,74 +27,72 @@ public class FitnessEvidenceController {
     @Autowired
     private FitnessEvidenceService fitnessService;
 
-@GetMapping("/upload")
-public String loadUploadFormAndDisplayData(Model model, HttpServletRequest request) {
-    Object parsedData = request.getSession().getAttribute("parsedData");
-    if (parsedData != null) {
-        model.addAttribute("parsedData", parsedData);
+    @GetMapping("/upload")
+    public String loadUploadFormAndDisplayData(Model model, HttpServletRequest request) {
+        Object parsedData = request.getSession().getAttribute("parsedData");
+        if (parsedData != null) {
+            model.addAttribute("parsedData", parsedData);
 
-        // Determine if the data is XML (SalaDeFitness) or JSON (SalaDeFitnessWrapper)
-        if (parsedData instanceof SalaDeFitness) {
-            SalaDeFitness salaDeFitness = (SalaDeFitness) parsedData;
-            Map<String, String> classesMap = new HashMap<>();
-            Map<String, String> instructorsMap = new HashMap<>();
-            for (Membru membru : salaDeFitness.getMembri()) {
-                StringBuilder classesBuilder = new StringBuilder();
-                StringBuilder instructorsBuilder = new StringBuilder();
-                for (Rezervare rezervare : membru.getRezervari()) {
-                    try {
-                        Clasa clasa = fitnessService.getClasaById(rezervare.getClasa_id());
-                        if (classesBuilder.length() > 0) {
-                            classesBuilder.append(", ");
-                            instructorsBuilder.append(", ");
+            // Determine if the data is XML (SalaDeFitness) or JSON (SalaDeFitnessWrapper)
+            if (parsedData instanceof SalaDeFitness) {
+                SalaDeFitness salaDeFitness = (SalaDeFitness) parsedData;
+                Map<String, String> classesMap = new HashMap<>();
+                Map<String, String> instructorsMap = new HashMap<>();
+                for (Membru membru : salaDeFitness.getMembri()) {
+                    StringBuilder classesBuilder = new StringBuilder();
+                    StringBuilder instructorsBuilder = new StringBuilder();
+                    for (Rezervare rezervare : membru.getRezervari()) {
+                        try {
+                            Clasa clasa = fitnessService.getClasaById(rezervare.getClasa_id());
+                            if (classesBuilder.length() > 0) {
+                                classesBuilder.append(", ");
+                                instructorsBuilder.append(", ");
+                            }
+                            classesBuilder.append(clasa.getTitlu());
+                            instructorsBuilder.append(clasa.getInstructor());
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                        classesBuilder.append(clasa.getTitlu());
-                        instructorsBuilder.append(clasa.getInstructor());
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
+                    classesMap.put(membru.getId(), classesBuilder.toString());
+                    instructorsMap.put(membru.getId(), instructorsBuilder.toString());
                 }
-                classesMap.put(membru.getId(), classesBuilder.toString());
-                instructorsMap.put(membru.getId(), instructorsBuilder.toString());
-            }
-            model.addAttribute("classesMap", classesMap);
-            model.addAttribute("instructorsMap", instructorsMap);
-            model.addAttribute("isNotWrapper", true);
-        } else if (parsedData instanceof SalaDeFitnessWrappper) {
-            SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) parsedData;
-            Map<String, String> classesMap = new HashMap<>();
-            Map<String, String> instructorsMap = new HashMap<>();
-            for (Membru membru : wrapper.getSalaDeFitness().getMembri()) {
-                StringBuilder classesBuilder = new StringBuilder();
-                StringBuilder instructorsBuilder = new StringBuilder();
-                for (Rezervare rezervare : membru.getRezervari()) {
-                    try {
-                        Clasa clasa = fitnessService.getClasaById(rezervare.getClasa_id());
-                        if (classesBuilder.length() > 0) {
-                            classesBuilder.append(", ");
-                            instructorsBuilder.append(", ");
+                model.addAttribute("classesMap", classesMap);
+                model.addAttribute("instructorsMap", instructorsMap);
+                model.addAttribute("isNotWrapper", true);
+            } else if (parsedData instanceof SalaDeFitnessWrappper) {
+                SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) parsedData;
+                Map<String, String> classesMap = new HashMap<>();
+                Map<String, String> instructorsMap = new HashMap<>();
+                for (Membru membru : wrapper.getSalaDeFitness().getMembri()) {
+                    StringBuilder classesBuilder = new StringBuilder();
+                    StringBuilder instructorsBuilder = new StringBuilder();
+                    for (Rezervare rezervare : membru.getRezervari()) {
+                        try {
+                            Clasa clasa = fitnessService.getClasaById(rezervare.getClasa_id());
+                            if (classesBuilder.length() > 0) {
+                                classesBuilder.append(", ");
+                                instructorsBuilder.append(", ");
+                            }
+                            classesBuilder.append(clasa.getTitlu());
+                            instructorsBuilder.append(clasa.getInstructor());
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                        classesBuilder.append(clasa.getTitlu());
-                        instructorsBuilder.append(clasa.getInstructor());
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
+                    classesMap.put(membru.getId(), classesBuilder.toString());
+                    instructorsMap.put(membru.getId(), instructorsBuilder.toString());
                 }
-                classesMap.put(membru.getId(), classesBuilder.toString());
-                instructorsMap.put(membru.getId(), instructorsBuilder.toString());
+                model.addAttribute("classesMap", classesMap);
+                model.addAttribute("instructorsMap", instructorsMap);
+                model.addAttribute("isWrapper", true);
             }
-            model.addAttribute("classesMap", classesMap);
-            model.addAttribute("instructorsMap", instructorsMap);
-            model.addAttribute("isWrapper", true);
+
+            // Clear the session attribute after adding to model to prevent it from reappearing on refresh
+            //request.getSession().removeAttribute("parsedData");
         }
-
-        // Clear the session attribute after adding to model to prevent it from reappearing on refresh
-        request.getSession().removeAttribute("parsedData");
+        return "upload";
     }
-    return "upload";
-}
-
-
 
     @PostMapping("/uploadFile")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
@@ -127,8 +125,8 @@ public String loadUploadFormAndDisplayData(Model model, HttpServletRequest reque
     //doar pentru a testa cele endpointuri
     @PostMapping("/uploadFiles")
     public ResponseEntity<Object> handleFilesUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes,
-                                   HttpServletRequest request) {
+                                                    RedirectAttributes redirectAttributes,
+                                                    HttpServletRequest request) {
         try {
             String contentType = file.getContentType();
             Object parsedData = null;
@@ -154,12 +152,31 @@ public String loadUploadFormAndDisplayData(Model model, HttpServletRequest reque
     }
 
     @GetMapping("/membri")
-    public ResponseEntity<?> getMembruByName(@RequestParam String name, HttpServletRequest request) {
-        List<Membru> membru = fitnessService.findMembruByName(name, request);
-        if (membru != null) {
-            return ResponseEntity.ok(membru);
+    public String getMembruByName(@RequestParam String name, HttpServletRequest request, Model model) {
+        Object parsedData = request.getSession().getAttribute("parsedData");
+        model.addAttribute("parsedData", parsedData);
+        List<Membru> membri = fitnessService.findMembruByName(name, parsedData);
+        if (membri != null && !membri.isEmpty()) {
+            model.addAttribute("foundMembersWithName", membri);
         } else {
-            return new ResponseEntity<>("Membru nu a fost găsit.", HttpStatus.NOT_FOUND);
+            model.addAttribute("searchError", "No members found with that name.");
         }
+
+        return "upload";
     }
+    @GetMapping("/echipamente")
+    public String getEchipamentByType(@RequestParam String tip, HttpServletRequest request, Model model) {
+        Object parsedData = request.getSession().getAttribute("parsedData");
+        model.addAttribute("parsedData", parsedData);
+        List<Echipament> echipamente = fitnessService.findEchipamentByType(tip, parsedData);
+        if (echipamente != null && !echipamente.isEmpty()) {
+            model.addAttribute("foundEchipamenteByType", echipamente);
+        } else {
+            model.addAttribute("searchError", "No members found with that name.");
+        }
+
+        return "upload";
+    }
+
+
 }
