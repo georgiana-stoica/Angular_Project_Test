@@ -16,6 +16,7 @@ import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -35,33 +36,55 @@ public String loadUploadFormAndDisplayData(Model model, HttpServletRequest reque
         // Determine if the data is XML (SalaDeFitness) or JSON (SalaDeFitnessWrapper)
         if (parsedData instanceof SalaDeFitness) {
             SalaDeFitness salaDeFitness = (SalaDeFitness) parsedData;
-            Map<String, Clasa> claseDetails = new HashMap<>();
+            Map<String, String> classesMap = new HashMap<>();
+            Map<String, String> instructorsMap = new HashMap<>();
             for (Membru membru : salaDeFitness.getMembri()) {
+                StringBuilder classesBuilder = new StringBuilder();
+                StringBuilder instructorsBuilder = new StringBuilder();
                 for (Rezervare rezervare : membru.getRezervari()) {
                     try {
                         Clasa clasa = fitnessService.getClasaById(rezervare.getClasa_id());
-                        claseDetails.put(rezervare.getClasa_id(), clasa);
+                        if (classesBuilder.length() > 0) {
+                            classesBuilder.append(", ");
+                            instructorsBuilder.append(", ");
+                        }
+                        classesBuilder.append(clasa.getTitlu());
+                        instructorsBuilder.append(clasa.getInstructor());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
+                classesMap.put(membru.getId(), classesBuilder.toString());
+                instructorsMap.put(membru.getId(), instructorsBuilder.toString());
             }
-            model.addAttribute("claseDetails", claseDetails);
+            model.addAttribute("classesMap", classesMap);
+            model.addAttribute("instructorsMap", instructorsMap);
             model.addAttribute("isNotWrapper", true);
         } else if (parsedData instanceof SalaDeFitnessWrappper) {
             SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) parsedData;
-            Map<String, Clasa> claseDetails = new HashMap<>();
+            Map<String, String> classesMap = new HashMap<>();
+            Map<String, String> instructorsMap = new HashMap<>();
             for (Membru membru : wrapper.getSalaDeFitness().getMembri()) {
+                StringBuilder classesBuilder = new StringBuilder();
+                StringBuilder instructorsBuilder = new StringBuilder();
                 for (Rezervare rezervare : membru.getRezervari()) {
                     try {
                         Clasa clasa = fitnessService.getClasaById(rezervare.getClasa_id());
-                        claseDetails.put(rezervare.getClasa_id(), clasa);
+                        if (classesBuilder.length() > 0) {
+                            classesBuilder.append(", ");
+                            instructorsBuilder.append(", ");
+                        }
+                        classesBuilder.append(clasa.getTitlu());
+                        instructorsBuilder.append(clasa.getInstructor());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
+                classesMap.put(membru.getId(), classesBuilder.toString());
+                instructorsMap.put(membru.getId(), instructorsBuilder.toString());
             }
-            model.addAttribute("claseDetails", claseDetails);
+            model.addAttribute("classesMap", classesMap);
+            model.addAttribute("instructorsMap", instructorsMap);
             model.addAttribute("isWrapper", true);
         }
 
@@ -101,33 +124,38 @@ public String loadUploadFormAndDisplayData(Model model, HttpServletRequest reque
         }
     }
 
+    //doar pentru a testa cele endpointuri
+    @PostMapping("/uploadFiles")
+    public ResponseEntity<Object> handleFilesUpload(@RequestParam("file") MultipartFile file,
+                                   RedirectAttributes redirectAttributes,
+                                   HttpServletRequest request) {
+        try {
+            String contentType = file.getContentType();
+            Object parsedData = null;
+
+            String content = new String(file.getBytes(), StandardCharsets.UTF_8);
+            if ("application/xml".equals(contentType) || file.getOriginalFilename().endsWith(".xml")) {
+                parsedData = fitnessService.parseXml(content);
+            } else if ("application/json".equals(contentType) || file.getOriginalFilename().endsWith(".json")) {
+                parsedData = fitnessService.parseJson(content);
+            } else {
+                redirectAttributes.addFlashAttribute("message", "Unsupported file type");
+                return new ResponseEntity<>(parsedData, HttpStatus.OK);
+            }
+
+            request.getSession().setAttribute("parsedData", parsedData);
+            redirectAttributes.addFlashAttribute("message", "File successfully uploaded and parsed");
+            return new ResponseEntity<>(parsedData, HttpStatus.OK);
+
+        } catch (IOException | JAXBException e) {
+            redirectAttributes.addFlashAttribute("message", "File upload failed: " + e.getMessage());
+            return new ResponseEntity<>("Nu a fost gasit", HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping("/membri")
-    public SalaDeFitness getAllMembri() {
-        try {
-            String xmlContent = fitnessService.readXmlContent();
-            return fitnessService.parseXml(xmlContent);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-    }
-
-    @GetMapping("/evidenta")
-    public SalaDeFitnessWrappper getEvidenta() {
-        try {
-            String jsonContent = fitnessService.readJsonContent();
-            return fitnessService.parseJson(jsonContent);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @GetMapping("/membri/{id}")
-    public ResponseEntity<?> getMembruById(@PathVariable String id, HttpServletRequest request) {
-        Membru membru = fitnessService.findMembruById(id, request);
+    public ResponseEntity<?> getMembruByName(@RequestParam String name, HttpServletRequest request) {
+        List<Membru> membru = fitnessService.findMembruByName(name, request);
         if (membru != null) {
             return ResponseEntity.ok(membru);
         } else {

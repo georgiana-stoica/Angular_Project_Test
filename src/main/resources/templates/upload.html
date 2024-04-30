@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 <head>
     <title>Upload and Display Data</title>
 </head>
 <body>
 <h1>Upload a file</h1>
 <p th:if="${message}" th:text="${message}"></p>
-<form method="POST" enctype="multipart/form-data" th:action="@{/api/fitness/uploadFile}">
-    <input type="file" name="file"/>
-    <button type="submit">Upload</button>
+<form method="POST" enctype="multipart/form-data" th:action="@{/api/fitness/uploadFile}" class="mb-3">
+    <input type="file" name="file" class="form-control mb-2">
+    <button type="submit" class="btn btn-primary">Upload</button>
 </form>
 
 <h2>Members and Their Classes</h2>
 
 
 <div th:if="${isNotWrapper}">
-    <table th:if="${isNotWrapper}">
+    <table th:if="${isNotWrapper}" class="table table-striped table-hover">
         <thead>
         <tr>
             <th>Member Name</th>
@@ -30,16 +35,14 @@
             <td th:text="${membru.nume}"></td>
             <td th:text="${membru.contact.email}"></td>
             <td th:text="${membru.contact.telefon}"></td>
-            <th:block th:each="rezervare : ${membru.rezervari}">
-                <td th:text="${claseDetails[rezervare.clasa_id].titlu}"></td>
-                <td th:text="${claseDetails[rezervare.clasa_id].instructor}"></td>
-            </th:block>
+            <td th:text="${classesMap.get(membru.id)}"></td>
+            <td th:text="${instructorsMap.get(membru.id)}"></td>
         </tr>
         </tbody>
     </table>
 </div>
 <div th:if="${isWrapper}">
-    <table th:if="${isWrapper}">
+    <table th:if="${isWrapper}" class="table table-striped table-hover">
         <thead>
         <tr>
             <th>Member Name</th>
@@ -54,10 +57,8 @@
             <td th:text="${membru.nume}"></td>
             <td th:text="${membru.contact.email}"></td>
             <td th:text="${membru.contact.telefon}"></td>
-            <th:block th:each="rezervare : ${membru.rezervari}">
-                <td th:text="${claseDetails[rezervare.clasa_id].titlu}"></td>
-                <td th:text="${claseDetails[rezervare.clasa_id].instructor}"></td>
-            </th:block>
+            <td th:text="${classesMap.get(membru.id)}"></td>
+            <td th:text="${instructorsMap.get(membru.id)}"></td>
         </tr>
         </tbody>
     </table>

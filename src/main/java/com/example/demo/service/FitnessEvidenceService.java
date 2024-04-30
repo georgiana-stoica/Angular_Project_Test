@@ -16,7 +16,9 @@ import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FitnessEvidenceService {
@@ -60,18 +62,15 @@ public class FitnessEvidenceService {
         return salaDeFitnessWrapper;
     }
 
-    public Membru findMembruById(String id, HttpServletRequest request) {
+    public List<Membru> findMembruByName(String name, HttpServletRequest request) {
         Object dataFromSession = request.getSession().getAttribute("parsedData");
         if (dataFromSession instanceof SalaDeFitnessWrappper) {
             SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) dataFromSession;
-            List<Membru> membri = wrapper.getSalaDeFitness().getMembri();
-            for (Membru membru : membri) {
-                if (membru.getId().equals(id)) {
-                    return membru;
-                }
-            }
+            return wrapper.getSalaDeFitness().getMembri().stream()
+                    .filter(membru -> membru.getNume().contains(name))
+                    .collect(Collectors.toList());
         }
-        return null;
+        return Collections.emptyList();
     }
 
 }
