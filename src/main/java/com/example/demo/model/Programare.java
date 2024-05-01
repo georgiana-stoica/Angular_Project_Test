@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.*;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.*;
 public class Programare {
 
     @XmlAttribute
-    private String data;
+    private Date data;
 
     @XmlAttribute
     private String ora;

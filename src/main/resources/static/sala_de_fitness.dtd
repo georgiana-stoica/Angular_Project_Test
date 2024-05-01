@@ -1,0 +1,32 @@
+<!ELEMENT sala_de_fitness (membri,clase,echipamente)>
+<!ELEMENT membri (membru+)>
+<!ELEMENT membru (nume,contact,abonament,rezervari)>
+<!ATTLIST membru id CDATA #REQUIRED>
+<!ELEMENT nume (#PCDATA)>
+<!ELEMENT contact (telefon,email)>
+<!ELEMENT telefon (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT abonament EMPTY>
+<!ATTLIST abonament tip CDATA #REQUIRED>
+<!ATTLIST abonament data_inceput CDATA #REQUIRED>
+<!ATTLIST abonament data_sfarsit CDATA #REQUIRED>
+<!ELEMENT rezervari (rezervare+)>
+<!ELEMENT rezervare EMPTY>
+<!ATTLIST rezervare clasa_id CDATA #REQUIRED>
+<!ATTLIST rezervare data CDATA #REQUIRED>
+<!ELEMENT clase (clasa+)>
+<!ELEMENT clasa (titlu,instructor,programare,locatie,capacitate_maxima)>
+<!ATTLIST clasa id CDATA #REQUIRED>
+<!ELEMENT titlu (#PCDATA)>
+<!ELEMENT instructor (#PCDATA)>
+<!ELEMENT programare EMPTY>
+<!ATTLIST programare data CDATA #REQUIRED>
+<!ATTLIST programare ora CDATA #REQUIRED>
+<!ELEMENT locatie (#PCDATA)>
+<!ELEMENT capacitate_maxima (#PCDATA)>
+<!ELEMENT echipamente (echipament+)>
+<!ELEMENT echipament (denumire,stare)>
+<!ATTLIST echipament id CDATA #REQUIRED>
+<!ATTLIST echipament tip CDATA #REQUIRED>
+<!ELEMENT denumire (#PCDATA)>
+<!ELEMENT stare (#PCDATA)>

@@ -29,7 +29,7 @@ public class Clasa {
     private String locatie;
 
     @XmlElement
-    private String capacitate_maxima;
+    private int capacitate_maxima;
 
 
 }

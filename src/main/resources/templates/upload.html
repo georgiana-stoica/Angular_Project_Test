@@ -27,6 +27,7 @@
             <th>Phone</th>
             <th>Class Title</th>
             <th>Instructor</th>
+            <th>Programare</th>
         </tr>
         </thead>
         <tbody>
@@ -36,6 +37,7 @@
             <td th:text="${membru.contact.telefon}"></td>
             <td th:text="${classesMap.get(membru.id)}"></td>
             <td th:text="${instructorsMap.get(membru.id)}"></td>
+            <td th:text="${programmeMap.get(membru.id)}"></td>
         </tr>
         </tbody>
     </table>
@@ -49,6 +51,7 @@
             <th>Phone</th>
             <th>Class Title</th>
             <th>Instructor</th>
+            <th>Programare</th>
         </tr>
         </thead>
         <tbody>
@@ -58,6 +61,7 @@
             <td th:text="${membru.contact.telefon}"></td>
             <td th:text="${classesMap.get(membru.id)}"></td>
             <td th:text="${instructorsMap.get(membru.id)}"></td>
+            <td th:text="${programmeMap.get(membru.id)}"></td>
         </tr>
         </tbody>
     </table>
@@ -67,7 +71,6 @@
     <p>No data available. Please upload a file first.</p>
 </div>
 
-<!--<div th:if="${parsedData}">-->
 <div>
     <h3>Search for a Member by Name</h3>
     <form action="/api/fitness/membri" method="get">

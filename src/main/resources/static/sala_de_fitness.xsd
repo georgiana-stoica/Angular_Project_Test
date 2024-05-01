@@ -1,0 +1,90 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="sala_de_fitness">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="membri" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="membru" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nume" type="xs:string"/>
+                                        <xs:element name="contact">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="telefon" type="xs:string"/>
+                                                    <xs:element name="email" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="abonament">
+                                            <xs:complexType>
+                                                <xs:attribute name="tip" type="xs:string" use="required"/>
+                                                <xs:attribute name="data_inceput" type="xs:date" use="required"/>
+                                                <xs:attribute name="data_sfarsit" type="xs:date" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="rezervari">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="rezervare" minOccurs="1" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="clasa_id" type="xs:string"
+                                                                          use="required"/>
+                                                            <xs:attribute name="data" type="xs:date" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="clase" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="clasa" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="titlu" type="xs:string"/>
+                                        <xs:element name="instructor" type="xs:string"/>
+                                        <xs:element name="programare">
+                                            <xs:complexType>
+                                                <xs:attribute name="data" type="xs:date" use="required"/>
+                                                <xs:attribute name="ora" type="xs:string" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="locatie" type="xs:string"/>
+                                        <xs:element name="capacitate_maxima" type="xs:int"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="echipamente" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="echipament" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="denumire" type="xs:string"/>
+                                        <xs:element name="stare" type="xs:string"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string" use="required"/>
+                                    <xs:attribute name="tip" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

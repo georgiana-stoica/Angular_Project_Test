@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
@@ -47,12 +46,12 @@ public class FitnessEvidenceService {
                 .orElse(null);
     }
 
-    public SalaDeFitnessWrappper parseJson(String jsonContent) throws IOException {
+    public SalaDeFitnessWrapper parseJson(String jsonContent) throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        SalaDeFitnessWrappper salaDeFitnessWrapper = new SalaDeFitnessWrappper();
+        SalaDeFitnessWrapper salaDeFitnessWrapper = new SalaDeFitnessWrapper();
         try {
-            salaDeFitnessWrapper = objectMapper.readValue(jsonContent, SalaDeFitnessWrappper.class);
+            salaDeFitnessWrapper = objectMapper.readValue(jsonContent, SalaDeFitnessWrapper.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,8 +59,8 @@ public class FitnessEvidenceService {
     }
 
     public List<Membru> findMembruByName(String name, Object dataFromSession) {
-        if (dataFromSession instanceof SalaDeFitnessWrappper) {
-            SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) dataFromSession;
+        if (dataFromSession instanceof SalaDeFitnessWrapper) {
+            SalaDeFitnessWrapper wrapper = (SalaDeFitnessWrapper) dataFromSession;
             return wrapper.getSalaDeFitness().getMembri().stream()
                     .filter(membru -> membru.getNume().contains(name))
                     .collect(Collectors.toList());
@@ -70,8 +69,8 @@ public class FitnessEvidenceService {
     }
 
     public List<Echipament> findEchipamentByType(String tip, Object dataFromSession) {
-        if (dataFromSession instanceof SalaDeFitnessWrappper) {
-            SalaDeFitnessWrappper wrapper = (SalaDeFitnessWrappper) dataFromSession;
+        if (dataFromSession instanceof SalaDeFitnessWrapper) {
+            SalaDeFitnessWrapper wrapper = (SalaDeFitnessWrapper) dataFromSession;
             return wrapper.getSalaDeFitness().getEchipamente().stream()
                     .filter(echipament -> echipament.getTip().contains(tip))
                     .collect(Collectors.toList());
