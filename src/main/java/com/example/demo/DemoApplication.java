@@ -14,13 +14,4 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
-
-
-	@Bean
-	public ViewResolver xsltViewResolver() {
-		XsltViewResolver xsltResolver = new XsltViewResolver();
-		xsltResolver.setPrefix("classpath:/static/");
-		xsltResolver.setSuffix(".xsl");
-		return xsltResolver;
-	}
 }

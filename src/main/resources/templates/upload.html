@@ -9,6 +9,13 @@
     <title>Upload and Display Data</title>
 </head>
 <body>
+<div>
+    <h1>Spring MVC XSLT View Demo</h1>
+    <p>
+        <b><a href="/api/fitness/viewXSLT">Click here to view XSLT transformation</a></b>
+    </p>
+</div>
+
 <h1>Upload a file</h1>
 <p th:if="${message}" th:text="${message}"></p>
 <form method="POST" enctype="multipart/form-data" th:action="@{/api/fitness/uploadFile}" class="mb-3">

@@ -76,3 +76,24 @@
     </xsl:template>
 
 </xsl:stylesheet>
+<!--                <h2>Echipamente</h2>-->
+<!--                <table>-->
+<!--                    <tr>-->
+<!--                        <th>ID Echipament</th>-->
+<!--                        <th>Tip Echipament</th>-->
+<!--                        <th>Denumire</th>-->
+<!--                        <th>Stare</th>-->
+<!--                    </tr>-->
+<!--                    <xsl:apply-templates select="echipamente/echipament"/>-->
+<!--                </table>-->
+
+
+<!--    <xsl:template match="echipament">-->
+<!--        <tr>-->
+<!--            <td><xsl:value-of select="@id"/></td>-->
+<!--            <td><xsl:value-of select="@tip"/></td>-->
+<!--            <td><xsl:value-of select="denumire"/></td>-->
+<!--            <td><xsl:value-of select="stare"/></td>-->
+<!--        </tr>-->
+<!--    </xsl:template>-->
+

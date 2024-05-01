@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class FitnessEvidenceService {
 
     public String readXmlContent() throws IOException {
-        ClassPathResource classPathResource = new ClassPathResource("static/sala_de_fitness.xml");
+        ClassPathResource classPathResource = new ClassPathResource("sala_de_fitness.xml");
         byte[] byteArray = StreamUtils.copyToByteArray(classPathResource.getInputStream());
         return new String(byteArray, StandardCharsets.UTF_8);
     }

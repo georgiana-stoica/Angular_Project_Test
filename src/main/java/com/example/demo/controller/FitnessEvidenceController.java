@@ -4,6 +4,7 @@ import com.example.demo.model.*;
 import com.example.demo.service.FitnessEvidenceService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -33,14 +33,13 @@ public class FitnessEvidenceController {
 
     @Autowired
     private FitnessEvidenceService fitnessService;
-    @GetMapping("/")
-    public String getFitnessData(Model model) throws Exception {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new ClassPathResource("static/sala_de_fitness.xml").getInputStream());
 
-        model.addAttribute("xmlSource", document);
-        return "sala_de_fitness";
+    @RequestMapping(value="/viewXSLT")
+    public ModelAndView viewXSLT() throws IOException {
+        Source source = new StreamSource(new ClassPathResource("sala_de_fitness.xml").getInputStream());
+        ModelAndView model = new ModelAndView("fitness_sala");
+        model.addObject("xmlSource", source);
+        return model;
     }
 
     @GetMapping("/upload")
