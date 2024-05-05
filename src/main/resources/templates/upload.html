@@ -10,31 +10,31 @@
 </head>
 <body>
 <div>
-    <h1>Spring MVC XSLT View Demo</h1>
+    <h1>Evidența unei săli de fitness</h1>
     <p>
-        <b><a href="/api/fitness/viewXSLT">Click here to view XSLT transformation</a></b>
+        <b><a href="/api/fitness/viewXSLT">Afișare XSL</a></b>
     </p>
 </div>
 
-<h1>Upload a file</h1>
+<h1>Încarcă un fișier(.json/.xml)</h1>
 <p th:if="${message}" th:text="${message}"></p>
 <form method="POST" enctype="multipart/form-data" th:action="@{/api/fitness/uploadFile}" class="mb-3">
     <input type="file" name="file" class="form-control mb-2">
     <button type="submit" class="btn btn-primary">Upload</button>
 </form>
 
-<h2>Members and Their Classes</h2>
+<h2>Membrii și cursurile la care participă</h2>
 
 <div th:if="${isNotWrapper}">
     <table th:if="${isNotWrapper}" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>Member Name</th>
+            <th>Nume membru</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Class Title</th>
+            <th>Telefon</th>
+            <th>Denumire curs</th>
             <th>Instructor</th>
-            <th>Programare</th>
+            <th>Rezervare</th>
         </tr>
         </thead>
         <tbody>
@@ -53,12 +53,12 @@
     <table th:if="${isWrapper}" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>Member Name</th>
+            <th>Nume membru</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Class Title</th>
+            <th>Telefon</th>
+            <th>Denumire curs</th>
             <th>Instructor</th>
-            <th>Programare</th>
+            <th>Rezervare</th>
         </tr>
         </thead>
         <tbody>
@@ -75,17 +75,17 @@
 </div>
 
 <div th:unless="${parsedData}">
-    <p>No data available. Please upload a file first.</p>
+    <p>Nu există date disponibile. Încarcă un fișier!</p>
 </div>
 
 <div>
-    <h3>Search for a Member by Name</h3>
+    <h3>Caută un membru după nume</h3>
     <form action="/api/fitness/membri" method="get">
         <div class="mb-3">
-            <label for="name" class="form-label">Member Name:</label>
+            <label for="name" class="form-label">Nume membru:</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-primary">Caută</button>
     </form>
 </div>
 <div th:if="${foundMembersWithName}">
@@ -108,7 +108,7 @@
 </div>
 
 <div>
-    <h3>Cauta un echipament dupa tip:</h3>
+    <h3>Caută un echipament după tip:</h3>
     <form action="/api/fitness/echipamente" method="get">
         <div class="mb-3">
             <label for="tip_echipament" class="form-label">Alege tipul:</label>
@@ -119,7 +119,7 @@
                 <option value="flexibilitate">Flexibilitate</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-primary">Caută</button>
     </form>
 </div>
 

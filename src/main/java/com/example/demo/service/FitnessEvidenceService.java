@@ -32,12 +32,6 @@ public class FitnessEvidenceService {
 
     }
 
-    public String readJsonContent() throws IOException {
-        ClassPathResource classPathResource = new ClassPathResource("static/sala_de_fitness.json");
-        byte[] byteArray = StreamUtils.copyToByteArray(classPathResource.getInputStream());
-        return new String(byteArray, StandardCharsets.UTF_8);
-    }
-
     public Clasa getClasaById(String clasaId) throws IOException, JAXBException {
         SalaDeFitness salaDeFitness = parseXml(readXmlContent());
         return salaDeFitness.getClase().stream()
@@ -65,7 +59,12 @@ public class FitnessEvidenceService {
                     .filter(membru -> membru.getNume().contains(name))
                     .collect(Collectors.toList());
         }
-        return Collections.emptyList();
+        else {
+            SalaDeFitness salaDeFitness = (SalaDeFitness) dataFromSession;
+            return salaDeFitness.getMembri().stream()
+                    .filter(membru -> membru.getNume().contains(name))
+                    .collect(Collectors.toList());
+        }
     }
 
     public List<Echipament> findEchipamentByType(String tip, Object dataFromSession) {
@@ -74,8 +73,12 @@ public class FitnessEvidenceService {
             return wrapper.getSalaDeFitness().getEchipamente().stream()
                     .filter(echipament -> echipament.getTip().contains(tip))
                     .collect(Collectors.toList());
+        } else {
+            SalaDeFitness salaDeFitness = (SalaDeFitness) dataFromSession;
+            return salaDeFitness.getEchipamente().stream()
+                    .filter(echipament -> echipament.getTip().contains(tip))
+                    .collect(Collectors.toList());
         }
-        return Collections.emptyList();
     }
 
 }

@@ -4,7 +4,6 @@ import com.example.demo.model.*;
 import com.example.demo.service.FitnessEvidenceService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -132,16 +131,16 @@ public class FitnessEvidenceController {
             } else if ("application/json".equals(contentType) || file.getOriginalFilename().endsWith(".json")) {
                 parsedData = fitnessService.parseJson(content);
             } else {
-                redirectAttributes.addFlashAttribute("message", "Unsupported file type");
+                redirectAttributes.addFlashAttribute("message", "Acest tip de fișier nu merge încărcat!");
                 return "redirect:/api/fitness/upload";
             }
 
             request.getSession().setAttribute("parsedData", parsedData);
-            redirectAttributes.addFlashAttribute("message", "File successfully uploaded and parsed");
+            redirectAttributes.addFlashAttribute("message", "Fișier încărcat și parsat cu succes!");
             return "redirect:/api/fitness/upload";
 
         } catch (IOException | JAXBException e) {
-            redirectAttributes.addFlashAttribute("message", "File upload failed: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("message", "Încarcarea fișierului a eșuat: " + e.getMessage());
             return "redirect:/api/fitness/upload";
         }
     }
@@ -160,16 +159,16 @@ public class FitnessEvidenceController {
             } else if ("application/json".equals(contentType) || file.getOriginalFilename().endsWith(".json")) {
                 parsedData = fitnessService.parseJson(content);
             } else {
-                redirectAttributes.addFlashAttribute("message", "Unsupported file type");
+                redirectAttributes.addFlashAttribute("message", "Acest tip de fișier nu merge încărcat!");
                 return new ResponseEntity<>(parsedData, HttpStatus.OK);
             }
 
             request.getSession().setAttribute("parsedData", parsedData);
-            redirectAttributes.addFlashAttribute("message", "File successfully uploaded and parsed");
+            redirectAttributes.addFlashAttribute("message", "Fișier încărcat și parsat cu succes!");
             return new ResponseEntity<>(parsedData, HttpStatus.OK);
 
         } catch (IOException | JAXBException e) {
-            redirectAttributes.addFlashAttribute("message", "File upload failed: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("message", "Încarcarea fișierului a eșuat: " + e.getMessage());
             return new ResponseEntity<>("Nu a fost gasit", HttpStatus.NOT_FOUND);
         }
     }
@@ -182,7 +181,7 @@ public class FitnessEvidenceController {
         if (membri != null && !membri.isEmpty()) {
             model.addAttribute("foundMembersWithName", membri);
         } else {
-            model.addAttribute("searchError", "No members found with that name.");
+            model.addAttribute("searchError", "Niciun membru cu acest nume nu a fost găsit.");
         }
 
         return "upload";
@@ -196,7 +195,7 @@ public class FitnessEvidenceController {
         if (echipamente != null && !echipamente.isEmpty()) {
             model.addAttribute("foundEchipamenteByType", echipamente);
         } else {
-            model.addAttribute("searchError", "No members found with that name.");
+            model.addAttribute("searchError", "Nu a fost găsit niciun echipament.");
         }
 
         return "upload";
