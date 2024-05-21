@@ -35,8 +35,8 @@ public class FitnessEvidenceController {
 
     @RequestMapping(value="/viewXSLT")
     public ModelAndView viewXSLT() throws IOException {
-        Source source = new StreamSource(new ClassPathResource("sala_de_fitness.xml").getInputStream());
-        ModelAndView model = new ModelAndView("fitness_sala");
+        Source source = new StreamSource(new ClassPathResource("ProiectStoicaGeorgiana.xml").getInputStream());
+        ModelAndView model = new ModelAndView("ProiectStoicaGeorgiana");
         model.addObject("xmlSource", source);
         return model;
     }

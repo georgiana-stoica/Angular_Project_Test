@@ -12,7 +12,6 @@ import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +19,7 @@ import java.util.stream.Collectors;
 public class FitnessEvidenceService {
 
     public String readXmlContent() throws IOException {
-        ClassPathResource classPathResource = new ClassPathResource("sala_de_fitness.xml");
+        ClassPathResource classPathResource = new ClassPathResource("ProiectStoicaGeorgiana.xml");
         byte[] byteArray = StreamUtils.copyToByteArray(classPathResource.getInputStream());
         return new String(byteArray, StandardCharsets.UTF_8);
     }

@@ -15,7 +15,7 @@ public class MvcConfiguration {
         resolver.setViewClass(org.springframework.web.servlet.view.xslt.XsltView.class);
         resolver.setPrefix("classpath:/");
         resolver.setSuffix(".xsl");
-        resolver.setViewNames("fitness_sala");
+        resolver.setViewNames("ProiectStoicaGeorgiana");
         return resolver;
     }
 
