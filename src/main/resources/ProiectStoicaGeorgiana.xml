@@ -25,6 +25,53 @@
                 <rezervare clasa_id="C003" data="2024-01-20"/>
             </rezervari>
         </membru>
+        <membru id="M003">
+            <nume>Marin Alexandru</nume>
+            <contact>
+                <telefon>0722222222</telefon>
+                <email>alex.marin@email.com</email>
+            </contact>
+            <abonament tip="semestrial" data_inceput="2024-01-01" data_sfarsit="2024-06-30"/>
+            <rezervari>
+                <rezervare clasa_id="C003" data="2024-01-20"/>
+            </rezervari>
+        </membru>
+        <membru id="M004">
+            <nume>Popa Elena</nume>
+            <contact>
+                <telefon>0723333333</telefon>
+                <email>elena.popa@email.com</email>
+            </contact>
+            <abonament tip="lunar" data_inceput="2024-01-01" data_sfarsit="2024-01-31"/>
+            <rezervari>
+                <rezervare clasa_id="C001" data="2024-01-15"/>
+                <rezervare clasa_id="C002" data="2024-01-16"/>
+            </rezervari>
+        </membru>
+        <membru id="M005">
+            <nume>Vasilescu Mircea</nume>
+            <contact>
+                <telefon>0724444444</telefon>
+                <email>mircea.vasilescu@email.com</email>
+            </contact>
+            <abonament tip="trimestrial" data_inceput="2024-01-01" data_sfarsit="2024-03-31"/>
+            <rezervari>
+                <rezervare clasa_id="C002" data="2024-01-16"/>
+                <rezervare clasa_id="C004" data="2024-01-18"/>
+            </rezervari>
+        </membru>
+        <membru id="M006">
+            <nume>Georgescu Maria</nume>
+            <contact>
+                <telefon>0725555555</telefon>
+                <email>maria.georgescu@email.com</email>
+            </contact>
+            <abonament tip="anual" data_inceput="2024-01-01" data_sfarsit="2024-12-31"/>
+            <rezervari>
+                <rezervare clasa_id="C001" data="2024-01-15"/>
+                <rezervare clasa_id="C003" data="2024-01-20"/>
+            </rezervari>
+        </membru>
     </membri>
     <clase>
         <clasa id="C001">
@@ -48,6 +95,13 @@
             <locatie>Sala C</locatie>
             <capacitate_maxima>25</capacitate_maxima>
         </clasa>
+        <clasa id="C004">
+            <titlu>Zumba</titlu>
+            <instructor>Pop Ana</instructor>
+            <programare data="2024-01-18" ora="19:00"/>
+            <locatie>Sala A</locatie>
+            <capacitate_maxima>30</capacitate_maxima>
+        </clasa>
     </clase>
     <echipamente>
         <echipament id="E001" tip="cardio">
@@ -61,6 +115,14 @@
         <echipament id="E003" tip="flexibilitate">
             <denumire>Mingi de pilates</denumire>
             <stare>disponibil</stare>
+        </echipament>
+        <echipament id="E004" tip="cardio">
+            <denumire>Bicicleta stationara</denumire>
+            <stare>disponibil</stare>
+        </echipament>
+        <echipament id="E005" tip="forta">
+            <denumire>Aparat multifunctional</denumire>
+            <stare>in uz</stare>
         </echipament>
     </echipamente>
 </sala_de_fitness>

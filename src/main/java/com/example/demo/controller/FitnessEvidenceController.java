@@ -22,6 +22,7 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,7 @@ public class FitnessEvidenceController {
     @GetMapping("/upload")
     public String loadUploadFormAndDisplayData(Model model, HttpServletRequest request) {
         Object parsedData = request.getSession().getAttribute("parsedData");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy");
         if (parsedData != null) {
             model.addAttribute("parsedData", parsedData);
 
@@ -66,7 +68,9 @@ public class FitnessEvidenceController {
                             }
                             classesBuilder.append(clasa.getTitlu());
                             instructorsBuilder.append(clasa.getInstructor());
-                            programareBuilder.append(clasa.getProgramare());
+                            String formattedDate = dateFormat.format(clasa.getProgramare().getData());
+                            programareBuilder.append(formattedDate + " Ora " + clasa.getProgramare().getOra());
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -99,7 +103,8 @@ public class FitnessEvidenceController {
                             }
                             classesBuilder.append(clasa.getTitlu());
                             instructorsBuilder.append(clasa.getInstructor());
-                            programareBuilder.append(clasa.getProgramare());
+                            String formattedDate = dateFormat.format(clasa.getProgramare().getData());
+                            programareBuilder.append(formattedDate + " Ora " + clasa.getProgramare().getOra());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

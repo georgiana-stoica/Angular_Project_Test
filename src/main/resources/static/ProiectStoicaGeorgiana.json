@@ -1,104 +1,214 @@
 {
-    "sala_de_fitness": {
-      "membri": [
-        {
-          "id": "M001",
-          "nume": "Popescu Ion",
-          "contact": {
-            "telefon": "0720000000",
-            "email": "ion.popescu@email.com"
-          },
-          "abonament": {
-            "tip": "lunar",
-            "data_inceput": "01.01.2024",
-            "data_sfarsit": "31.01.2024"
-          },
-          "rezervari": [
-            {
-              "clasa_id": "C001",
-              "data": "2024-01-15"
-            }
-          ]
+  "sala_de_fitness": {
+    "membri": [
+      {
+        "id": "M001",
+        "nume": "Popescu Ion",
+        "contact": {
+          "telefon": "0720000000",
+          "email": "ion.popescu@email.com"
         },
-        {
-          "id": "M002",
-          "nume": "Ionescu Alina",
-          "contact": {
-            "telefon": "0721111111",
-            "email": "alina.ionescu@email.com"
-          },
-          "abonament": {
-            "tip": "anual",
-            "data_inceput": "01.01.2024",
-            "data_sfarsit": "31.12.2024"
-          },
-          "rezervari": [
-            {
-              "clasa_id": "C002",
-              "data": "2024-01-16"
-            },
-            {
-              "clasa_id": "C003",
-              "data": "2024-01-20"
-            }
-          ]
-        }
-      ],
-      "clase": [
-        {
-          "id": "C001",
-          "titlu": "Yoga pentru Incepatori",
-          "instructor": "Georgescu Stefan",
-          "programare": {
-            "data": "2024-01-15",
-            "ora": "10:00"
-          },
-          "locatie": "Sala A",
-          "capacitate_maxima": 20
+        "abonament": {
+          "tip": "lunar",
+          "data_inceput": "2024-01-01",
+          "data_sfarsit": "2024-01-31"
         },
-        {
-          "id": "C002",
-          "titlu": "Pilates Avansat",
-          "instructor": "Dinu Daniel",
-          "programare": {
-            "data": "2024-01-16",
-            "ora": "18:00"
+        "rezervari": [
+          {
+            "clasa_id": "C001",
+            "data": "2024-01-15"
+          }
+        ]
+      },
+      {
+        "id": "M002",
+        "nume": "Ionescu Alina",
+        "contact": {
+          "telefon": "0721111111",
+          "email": "alina.ionescu@email.com"
+        },
+        "abonament": {
+          "tip": "anual",
+          "data_inceput": "2024-01-01",
+          "data_sfarsit": "2024-12-31"
+        },
+        "rezervari": [
+          {
+            "clasa_id": "C002",
+            "data": "2024-01-16"
           },
-          "locatie": "Sala B",
-          "capacitate_maxima": 15
+          {
+            "clasa_id": "C003",
+            "data": "2024-01-20"
+          }
+        ]
+      },
+      {
+        "id": "M003",
+        "nume": "Marin Alexandru",
+        "contact": {
+          "telefon": "0722222222",
+          "email": "alex.marin@email.com"
         },
-        {
-          "id": "C003",
-          "titlu": "Cardio Intensiv",
-          "instructor": "Manea Ioana",
-          "programare": {
-            "data": "2024-01-20",
-            "ora": "16:00"
+        "abonament": {
+          "tip": "semestrial",
+          "data_inceput": "2024-01-01",
+          "data_sfarsit": "2024-06-30"
+        },
+        "rezervari": [
+          {
+            "clasa_id": "C003",
+            "data": "2024-01-20"
+          }
+        ]
+      },
+      {
+        "id": "M004",
+        "nume": "Popa Elena",
+        "contact": {
+          "telefon": "0723333333",
+          "email": "elena.popa@email.com"
+        },
+        "abonament": {
+          "tip": "lunar",
+          "data_inceput": "2024-01-01",
+          "data_sfarsit": "2024-01-31"
+        },
+        "rezervari": [
+          {
+            "clasa_id": "C001",
+            "data": "2024-01-15"
           },
-          "locatie": "Sala C",
-          "capacitate_maxima": 25
-        }
-      ],
-      "echipamente": [
-        {
-          "id": "E001",
-          "tip": "cardio",
-          "denumire": "Banda de alergat",
-          "stare": "disponibil"
+          {
+            "clasa_id": "C002",
+            "data": "2024-01-16"
+          }
+        ]
+      },
+      {
+        "id": "M005",
+        "nume": "Vasilescu Mircea",
+        "contact": {
+          "telefon": "0724444444",
+          "email": "mircea.vasilescu@email.com"
         },
-        {
-          "id": "E002",
-          "tip": "forta",
-          "denumire": "Set haltere",
-          "stare": "în uz"
+        "abonament": {
+          "tip": "trimestrial",
+          "data_inceput": "2024-01-01",
+          "data_sfarsit": "2024-03-31"
         },
-        {
-          "id": "E003",
-          "tip": "flexibilitate",
-          "denumire": "Mingi de pilates",
-          "stare": "disponibil"
-        }
-      ]
-    }
+        "rezervari": [
+          {
+            "clasa_id": "C002",
+            "data": "2024-01-16"
+          },
+          {
+            "clasa_id": "C004",
+            "data": "2024-01-18"
+          }
+        ]
+      },
+      {
+        "id": "M006",
+        "nume": "Georgescu Maria",
+        "contact": {
+          "telefon": "0725555555",
+          "email": "maria.georgescu@email.com"
+        },
+        "abonament": {
+          "tip": "anual",
+          "data_inceput": "2024-01-01",
+          "data_sfarsit": "2024-12-31"
+        },
+        "rezervari": [
+          {
+            "clasa_id": "C001",
+            "data": "2024-01-15"
+          },
+          {
+            "clasa_id": "C003",
+            "data": "2024-01-20"
+          }
+        ]
+      }
+    ],
+    "clase": [
+      {
+        "id": "C001",
+        "titlu": "Yoga pentru Incepatori",
+        "instructor": "Georgescu Stefan",
+        "programare": {
+          "data": "2024-01-15",
+          "ora": "10:00"
+        },
+        "locatie": "Sala A",
+        "capacitate_maxima": 20
+      },
+      {
+        "id": "C002",
+        "titlu": "Pilates Avansat",
+        "instructor": "Dinu Daniel",
+        "programare": {
+          "data": "2024-01-16",
+          "ora": "18:00"
+        },
+        "locatie": "Sala B",
+        "capacitate_maxima": 15
+      },
+      {
+        "id": "C003",
+        "titlu": "Cardio Intensiv",
+        "instructor": "Manea Ioana",
+        "programare": {
+          "data": "2024-01-20",
+          "ora": "16:00"
+        },
+        "locatie": "Sala C",
+        "capacitate_maxima": 25
+      },
+      {
+        "id": "C004",
+        "titlu": "Zumba",
+        "instructor": "Pop Ana",
+        "programare": {
+          "data": "2024-01-18",
+          "ora": "19:00"
+        },
+        "locatie": "Sala A",
+        "capacitate_maxima": 30
+      }
+    ],
+    "echipamente": [
+      {
+        "id": "E001",
+        "tip": "cardio",
+        "denumire": "Banda de alergat",
+        "stare": "disponibil"
+      },
+      {
+        "id": "E002",
+        "tip": "forta",
+        "denumire": "Set haltere",
+        "stare": "in uz"
+      },
+      {
+        "id": "E003",
+        "tip": "flexibilitate",
+        "denumire": "Mingi de pilates",
+        "stare": "disponibil"
+      },
+      {
+        "id": "E004",
+        "tip": "cardio",
+        "denumire": "Bicicleta stationara",
+        "stare": "disponibil"
+      },
+      {
+        "id": "E005",
+        "tip": "forta",
+        "denumire": "Aparat multifunctional",
+        "stare": "in uz"
+      }
+    ]
   }
-  
+}
