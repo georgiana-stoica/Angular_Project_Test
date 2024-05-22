@@ -33,7 +33,6 @@
                     </tr>
                     <xsl:apply-templates select="membri/membru"/>
                 </table>
-
                 <h2>Clasele Disponibile</h2>
                 <table>
                     <tr>
@@ -47,53 +46,88 @@
                     </tr>
                     <xsl:apply-templates select="clase/clasa"/>
                 </table>
-
-                                <h2>Echipamente</h2>
-                                <table>
-                                    <tr>
-                                        <th>ID Echipament</th>
-                                        <th>Tip Echipament</th>
-                                        <th>Denumire</th>
-                                        <th>Stare</th>
-                                    </tr>
-                                    <xsl:apply-templates select="echipamente/echipament"/>
-                                </table>
+                <h2>Echipamente</h2>
+                <table>
+                    <tr>
+                        <th>ID Echipament</th>
+                        <th>Tip Echipament</th>
+                        <th>Denumire</th>
+                        <th>Stare</th>
+                    </tr>
+                    <xsl:apply-templates select="echipamente/echipament"/>
+                </table>
             </body>
         </html>
     </xsl:template>
 
     <xsl:template match="membru">
         <tr>
-            <td><xsl:value-of select="@id"/></td>
-            <td><xsl:value-of select="nume"/></td>
-            <td><xsl:value-of select="contact/telefon"/></td>
-            <td><xsl:value-of select="contact/email"/></td>
-            <td><xsl:value-of select="abonament/@tip"/></td>
-            <td><xsl:value-of select="abonament/@data_inceput"/></td>
-            <td><xsl:value-of select="abonament/@data_sfarsit"/></td>
+            <td>
+                <xsl:value-of select="@id"/>
+            </td>
+            <td>
+                <xsl:value-of select="nume"/>
+            </td>
+            <td>
+                <xsl:value-of select="contact/telefon"/>
+            </td>
+            <td>
+                <xsl:value-of select="contact/email"/>
+            </td>
+            <td>
+                <xsl:value-of select="abonament/@tip"/>
+            </td>
+            <td>
+                <xsl:value-of select="abonament/@data_inceput"/>
+            </td>
+            <td>
+                <xsl:value-of select="abonament/@data_sfarsit"/>
+            </td>
         </tr>
     </xsl:template>
 
     <xsl:template match="clasa">
         <tr>
-            <td><xsl:value-of select="@id"/></td>
-            <td><xsl:value-of select="titlu"/></td>
-            <td><xsl:value-of select="instructor"/></td>
-            <td><xsl:value-of select="programare/@data"/></td>
-            <td><xsl:value-of select="programare/@ora"/></td>
-            <td><xsl:value-of select="locatie"/></td>
-            <td><xsl:value-of select="capacitate_maxima"/></td>
+            <td>
+                <xsl:value-of select="@id"/>
+            </td>
+            <td>
+                <xsl:value-of select="titlu"/>
+            </td>
+            <td>
+                <xsl:value-of select="instructor"/>
+            </td>
+            <td>
+                <xsl:value-of select="programare/@data"/>
+            </td>
+            <td>
+                <xsl:value-of select="programare/@ora"/>
+            </td>
+            <td>
+                <xsl:value-of select="locatie"/>
+            </td>
+            <td>
+                <xsl:value-of select="capacitate_maxima"/>
+            </td>
         </tr>
     </xsl:template>
 
-        <xsl:template match="echipament">
-            <tr>
-                <td><xsl:value-of select="@id"/></td>
-                <td><xsl:value-of select="@tip"/></td>
-                <td><xsl:value-of select="denumire"/></td>
-                <td><xsl:value-of select="stare"/></td>
-            </tr>
-        </xsl:template>
+    <xsl:template match="echipament">
+        <tr>
+            <td>
+                <xsl:value-of select="@id"/>
+            </td>
+            <td>
+                <xsl:value-of select="@tip"/>
+            </td>
+            <td>
+                <xsl:value-of select="denumire"/>
+            </td>
+            <td>
+                <xsl:value-of select="stare"/>
+            </td>
+        </tr>
+    </xsl:template>
 
 </xsl:stylesheet>
 

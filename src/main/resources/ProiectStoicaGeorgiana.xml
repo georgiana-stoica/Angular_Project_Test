@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE sala_de_fitness SYSTEM "static/ProiectStoicaGeorgiana.dtd">-->
 <?xml-stylesheet type="text/xsl" href="ProiectStoicaGeorgiana.xsl"?>
-<sala_de_fitness>
+<sala_de_fitness xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="static/ProiectStoicaGeorgiana.xsd">
     <membri>
         <membru id="M001">
             <nume>Popescu Ion</nume>
@@ -31,7 +32,7 @@
                 <telefon>0722222222</telefon>
                 <email>alex.marin@email.com</email>
             </contact>
-            <abonament tip="semestrial" data_inceput="2024-01-01" data_sfarsit="2024-06-30"/>
+            <abonament tip="lunar" data_inceput="2024-01-01" data_sfarsit="2024-06-30"/>
             <rezervari>
                 <rezervare clasa_id="C003" data="2024-01-20"/>
             </rezervari>
@@ -54,7 +55,7 @@
                 <telefon>0724444444</telefon>
                 <email>mircea.vasilescu@email.com</email>
             </contact>
-            <abonament tip="trimestrial" data_inceput="2024-01-01" data_sfarsit="2024-03-31"/>
+            <abonament tip="lunar" data_inceput="2024-01-01" data_sfarsit="2024-03-31"/>
             <rezervari>
                 <rezervare clasa_id="C002" data="2024-01-16"/>
                 <rezervare clasa_id="C004" data="2024-01-18"/>

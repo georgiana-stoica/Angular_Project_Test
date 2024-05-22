@@ -51,7 +51,7 @@
           "email": "alex.marin@email.com"
         },
         "abonament": {
-          "tip": "semestrial",
+          "tip": "lunar",
           "data_inceput": "2024-01-01",
           "data_sfarsit": "2024-06-30"
         },
@@ -93,7 +93,7 @@
           "email": "mircea.vasilescu@email.com"
         },
         "abonament": {
-          "tip": "trimestrial",
+          "tip": "lunar",
           "data_inceput": "2024-01-01",
           "data_sfarsit": "2024-03-31"
         },

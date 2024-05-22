@@ -13,8 +13,21 @@
                                         <xs:element name="contact">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="telefon" type="xs:string"/>
-                                                    <xs:element name="email" type="xs:string"/>
+                                                    <xs:element name="telefon">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:pattern value="\d{10}"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="email">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:pattern
+                                                                        value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
@@ -51,7 +64,7 @@
                             <xs:element name="clasa" minOccurs="1" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="titlu" type="xs:string"/>
+                                        <xs:element name="titlu" type="xs:string" />
                                         <xs:element name="instructor" type="xs:string"/>
                                         <xs:element name="programare">
                                             <xs:complexType>
@@ -60,7 +73,14 @@
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="locatie" type="xs:string"/>
-                                        <xs:element name="capacitate_maxima" type="xs:int"/>
+                                        <xs:element name="capacitate_maxima">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:int">
+                                                    <xs:minInclusive value="1"/>
+                                                    <xs:maxInclusive value="50"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
                                     </xs:sequence>
                                     <xs:attribute name="id" type="xs:string" use="required"/>
                                 </xs:complexType>
@@ -73,12 +93,13 @@
                         <xs:sequence>
                             <xs:element name="echipament" minOccurs="1" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="denumire" type="xs:string"/>
-                                        <xs:element name="stare" type="xs:string"/>
-                                    </xs:sequence>
-                                    <xs:attribute name="id" type="xs:string" use="required"/>
-                                    <xs:attribute name="tip" type="xs:string" use="required"/>
+                                    <xs:complexContent>
+                                        <xs:extension base="BaseEchipamentType">
+                                            <xs:sequence>
+                                                <xs:element name="data_achizitie" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                                            </xs:sequence>
+                                        </xs:extension>
+                                    </xs:complexContent>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -87,4 +108,12 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:complexType name="BaseEchipamentType">
+        <xs:sequence>
+            <xs:element name="denumire" type="xs:string"/>
+            <xs:element name="stare" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="tip" type="xs:string" use="required"/>
+    </xs:complexType>
 </xs:schema>
